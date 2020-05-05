@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>记事本</title>
+        <link rel="stylesheet" type="text/css" href="./css/index.css">
+    </head>
+    <body>
+        <section id="todoapp">
+
+            <header>
+                <h1>小辉记事本</h1>
+                <input v-model="inputValue" autofocus="autofocus" autocomplete="off" placeholder="请输入事项" @keyup.enter="add" class="new-todo" />
+
+            </header>
+            <section class="main">
+                <ul class="todo-list">
+                    <li class="todo" v-for="(item,index) in list">
+                        <div class="view">
+                            <span class="index">{{index+1}}</span>
+                            <label>{{item}}</label>
+                            <button class="destroy" @click="remove"></button>
+                        </div>
+                    </li>
+
+                </ul>
+            </section>
+
+            <footer class="footer">
+                <span class="todo-count" v-show="list.length>0">
+                    <strong>{{list.length}}</strong>items left
+                </span>
+                <button v-show="list.length>0" class="clear-completed" @click="clear">Clear</button>
+            </footer>
+        </section>
+        <script src="vue.js"></script>
+
+        <script>
+            var app=new Vue({
+                el:"#todoapp",
+                data:{
+                    list:[],
+                    inputValue:""
+                },
+                methods: {
+                    add:function(){
+                        this.list.push(this.inputValue);
+                    },
+                    remove:function(index){
+                        console.log("删除");
+                        console.log(index);
+                        this.list.splice(index,1);
+                    },
+                    clear:function(){
+                        this.list=[];
+                    }
+                },
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>axios基本使用</title>
+    </head>
+    <body>
+        <input type="button" value="get" class="get">
+        <input type="button" value="post" class="post">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+            document.querySelector(".get").onclick=function(){
+                axios.get("https://autumnfish.cn/api/joke/list?num=6")
+                .then(function(response){
+                    console.log(response);
+                },function(err){
+                    console.log(err);
+                })
+            }
+
+            document.querySelector(".post").onclick=function(){
+                axios.post("https://autumnfish.cn/api/user/reg",{username:"lihui"})
+                .then(function(response){
+                    console.log(response);
+                    console.log(this.skill);
+                },function(err){
+                    console.log(err);
+                })
+            }
+        </script>
+    </body>
+</html>
